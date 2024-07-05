@@ -1,0 +1,38 @@
+body {
+    background-color: #2e2d2d;
+    font-family: "Consolas";
+}
+
+#epl {
+    padding-top: 30px;
+}
+
+#link {
+    display: flex;
+    padding-bottom: 6px;
+    text-decoration: none;
+    color: white;
+}
+
+#link:hover {
+    text-decoration: underline;
+    color: rgb(138, 143, 148);
+}
+
+#link:active {
+    color: rgb(205, 210, 214);
+}
+
+#top {
+    display: flex;
+    position: fixed;
+}
+#flex {
+    display: flex;
+}
+
+#search {
+    width: 500px;
+    margin-left: 20px;
+    
+}
