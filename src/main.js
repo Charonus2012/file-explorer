@@ -91,20 +91,43 @@ async function run(f, p) {
     await invoke("run_executable", { executablePath: p+f });
 }
 
+function back(params) {
+    let path = params["path"].split("\\");
+    if (path[-1]=="") {
+        path = params["path"].split("\\", path.length-2);
+    }
+    path = params["path"].split("\\", path.length-2);
+    path = path.join("\\")+"\\";
+    let f = document.createElement("form");
+    document.body.appendChild(f);
+    set_get(f, path, "path");
+    f.submit();
+}
+
+// Only when not writing path
+
+// var for detection
+let stoob = 0;
+
+// Detect when backspace in search
+document.getElementById("search").onkeydown = function (e) {
+    if(e.keyCode == 8) {
+        stoob = 1;
+    }
+}
+// Detect all backspaces
+document.onkeyup = function (e) {
+    if (e.keyCode == 8 && stoob != 1) {
+        back(getQueryParams());
+    }
+    stoob = 0;
+};
+
+
+
 window.addEventListener("DOMContentLoaded", () => {
     let params = getQueryParams();
-    document.getElementById("back").addEventListener("click", () => {
-        let path = params["path"].split("\\");
-        if (path[-1]=="") {
-            path = params["path"].split("\\", path.length-2);
-        }
-        path = params["path"].split("\\", path.length-2);
-        path = path.join("\\")+"\\";
-        let f = document.createElement("form");
-        document.body.appendChild(f);
-        set_get(f, path, "path");
-        f.submit();
-    });
+    document.getElementById("back").addEventListener("click", () => back(params));
     let inp = document.getElementById("search")
     if (params["path"]==null || params["path"]=="\\" || params["path"] == "" || params["path"]=="/") {
         inp.value = "\\"
