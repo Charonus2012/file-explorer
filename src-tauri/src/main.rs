@@ -5,7 +5,9 @@ use sysinfo::{
 };
 use std::fs;
 use serde::Serialize;
-use std::process::{Command, Stdio};
+use std::process::{
+    Command, Stdio
+};
 use std::os::windows::process::CommandExt;
 
 #[tauri::command]
@@ -71,6 +73,7 @@ fn list_directory_contents(directory_path: &str) -> Vec<Vec<FileEntry>> {
 
 #[tauri::command]
 fn run_executable(p: String) {
+    println!("for fun");
     Command::new("cmd")
         .args(&[p])
         .stdout(Stdio::null())  // Redirect stdout to null

@@ -1,3 +1,4 @@
+
 const { invoke } = window.__TAURI__.tauri;
 
 function getQueryParams() {
@@ -41,6 +42,7 @@ async function dir(path) {
             set_sub(form, cd["file_name"], "[" + cd["file_name"] + "]");
         }
     }
+    let sc = document.getElementById("clicks");
     for (let i = 0; i < dir.length; i++) {
         let cd = dir[i][0];
         if (cd["is_file"]) {
@@ -55,18 +57,12 @@ async function dir(path) {
             div.id = cd["file_name"];
             document.getElementById("epl").appendChild(div);
             
-            div.innerHTML += "<a id=\"link\" class=\""+cd["file_name"]  +"\" href=\"javascript:{}\" >"+ cd["file_name"] +"</a>"
-            div.innerHTML += "<script id='a"+ i +"'>";
-            let sc = document.getElementById("a"+i);
-            sc.innerHTML += 'async function a'+i+'() {await invoke("run_executable", {p: "'+ path + cd["file_name"] +'"})}';
-            sc.innerHTML += 'document.addEventListener("click", a'+ i +');';
-            sc.innerHTML += 'console.log("'+ path + cd["file_name"] +'")';
-            div.innerHTML += "</script>"
+            div.innerHTML += "<a id=\"link\" class=\""+cd["file_name"]  +"\">"+ cd["file_name"] +"</a>"
+
+            sc.innerHTML += 'async function a'+i+'() {\n    await invoke("run_executable", {p: "'+ path + cd["file_name"] +'"});\n}\n';
+            sc.innerHTML += 'document.addEventListener("click", a'+ i +');\n';
         }
     }
-}
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
 }
 async function disks() {
     /*

@@ -1,16 +1,38 @@
 # File explorer
-### Rust-tauri, npm
-- Tauri cli needed
+### *Quick* setup guide
+**Requirements:**
+```
+Windows only (Linux and Mac in future)
+Rust - Installed
+Tauri-cli - Installed
+npm - INstalled
+```
+**Install all dependencies:**
+```shell
+npm install
+```
+**Run on development:**
+```shell
+npm run tauri dev
+```
+**Build into installer:**
+```shell
+npm run tauri build
+```
+**Installer:**
+> /src-tauri/target/release/bundle
+>
+> /msi - a msi Installer
+> 
+> /nsis - an exe Installer
 
-- Firstly install all dependencies
-> npm install
-- Then run the application
-> npm run tauri dev
-- Then build
-> npm run tauri build
+<style>
+blockquote {
+    border-left: 5px solid #0a52c7;
+}
+</style>
 
-- The executable is in target/release
- - Installer msi target/release/bundle/msi
+
 
 
 
